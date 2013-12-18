@@ -1,0 +1,11 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      .brand= link_to 'Gollowfen', root_path
+      - if current_user
+        %ul.nav
+          %li= link_to "Terms", terms_path
+          %li= link_to "Users", users_path
+
+        %ul.nav.pull-right
+          %li= link_to "Logout", logout_path

@@ -1,0 +1,15 @@
+%h1
+  Preview:
+  = @term.term
+
+%table.table
+  %thead
+    %tr
+      %th Screen Name
+      %th Tweet Text
+
+  %tbody
+    - @term.sample_tweets.each do |tweet|
+      %tr
+        %td= tweet.user.screen_name
+        %td= tweet.text

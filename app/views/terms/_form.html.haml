@@ -1,0 +1,60 @@
+%table.table
+  %thead
+    %tr
+      %th Operator
+      %th Finds tweets...
+
+  %tbody
+    %tr
+      %td watching now
+      %td containing both "watching" and "now". This is the default operator.
+    %tr
+      %td "happy hour"
+      %td containing the exact phrase "happy hour".
+    %tr
+      %td love OR hate
+      %td containing either "love" or "hate" (or both).
+    %tr
+      %td beer -root
+      %td containing "beer" but not "root".
+    %tr
+      %td #haiku
+      %td containing the hashtag "haiku".
+    %tr
+      %td from:alexiskold
+      %td sent from person "alexiskold".
+    %tr
+      %td to:techcrunch
+      %td sent to person "techcrunch".
+    %tr
+      %td @mashable
+      %td referencing person "mashable".
+    %tr
+      %td superhero since:2010-12-27
+      %td containing "superhero" and sent since date "2010-12-27" (year-month-day).
+    %tr
+      %td ftw until:2010-12-27
+      %td containing "ftw" and sent before the date "2010-12-27".
+    %tr
+      %td movie -scary :)
+      %td containing "movie", but not "scary", and with a positive attitude.
+    %tr
+      %td flight :(
+      %td containing "flight" and with a negative attitude.
+    %tr
+      %td traffic ?
+      %td containing "traffic" and asking a question.
+    %tr
+      %td hilarious filter:links
+      %td containing "hilarious" and linking to URL.
+    %tr
+      %td news source:twitterfeed
+      %td containing "news" and entered via TwitterFeed
+
+.spacer_60
+
+= simple_form_for @term, html: { :class => 'form-horizontal' }, wrapper: :bootstrap do |f|
+  = f.input :term
+
+  .form-actions
+    = f.button :submit, :class => 'btn-success'

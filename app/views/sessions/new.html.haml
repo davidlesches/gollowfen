@@ -1,0 +1,15 @@
+.row
+  .span4 &nbsp;
+  .span4
+    .login_form.form-vertical
+      = simple_form_for(:session, :url => sessions_path) do |f|
+
+        .f-inputs
+          = f.input :email, label: false, placeholder: "Email"
+          = f.input :password, label: false, placeholder: "Password"
+
+        .f-login
+          = f.button :submit, value: "Login", class: 'btn btn-success'
+
+
+  .span4 &nbsp;

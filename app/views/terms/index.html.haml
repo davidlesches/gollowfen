@@ -1,0 +1,21 @@
+%h1 Your Terms
+
+= link_to 'New Term', new_term_path, class: 'btn btn-large btn-info pull-right'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Term
+      %th Favorites
+      %th Runs
+      %th{width: '30%'} Actions
+
+  - @terms.each do |term|
+    %tr
+      %td= term.term
+      %td= term.favorites_count
+      %td= term.runs
+      %td
+        = link_to 'Preview', preview_term_path(term), class: 'btn btn-info'
+        = link_to 'Edit', edit_term_path(term), class: 'btn btn-warning'
+        = link_to 'Destroy', term_path(term), :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger'

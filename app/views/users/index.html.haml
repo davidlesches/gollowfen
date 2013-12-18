@@ -1,0 +1,25 @@
+%h1 All Users
+
+= link_to 'New User', new_user_path, class: 'btn btn-large btn-info pull-right'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th OAuthed?
+      %th Screen Name
+      %th{width: '30%'} Actions
+
+  - @users.each do |user|
+    %tr
+      %td= user.name
+      %td= user.email
+      %td= (user.oauth_token && user.oauth_secret) ? 'Yes' : 'No'
+      %td= user.screen_name
+      %td
+        - if user == current_user
+          = link_to 'OAuth', '/auth/twitter', class: 'btn btn-info', :confirm => 'Are you sure?'
+        = link_to 'Edit', edit_user_path(user), class: 'btn btn-warning'
+        - unless user == current_user
+          = link_to 'Destroy', user_path(user), :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger'

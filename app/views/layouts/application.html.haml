@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title Gollowfen
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    = render 'shared/header'
+    .container
+      .alerts
+        - flash.each do |x,y|
+          %div{class: "alert alert-#{x == :notice ? 'success' : 'error'}"}
+            %a.close{"data-dismiss" => "alert"} &#215;
+            = y
+
+      .main
+        = yield

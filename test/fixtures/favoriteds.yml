@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  term_id: 
+  favorited_at: 2013-12-17 12:32:38
+  text: MyString
+  screen_name: MyString
+  permalink: MyString
+
+two:
+  term_id: 
+  favorited_at: 2013-12-17 12:32:38
+  text: MyString
+  screen_name: MyString
+  permalink: MyString
