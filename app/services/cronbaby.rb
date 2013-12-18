@@ -2,7 +2,7 @@ class Cronbaby
 
   def self.run_favorites
     User.find_each do |user|
-      user.terms.next_queued.favorite if user.terms.next_queued.present?
+      user.terms.find_each do { |t| t.favorite }
     end
   end
 

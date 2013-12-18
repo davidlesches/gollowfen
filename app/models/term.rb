@@ -4,9 +4,6 @@ class Term < ActiveRecord::Base
   belongs_to :user
   has_many :favorites, dependent: :destroy
 
-  # Scopes
-  scope :next_queued, -> { order('runs asc, id asc').first }
-
   # Validations
   validates :term, presence: true
 
@@ -17,11 +14,6 @@ class Term < ActiveRecord::Base
     self.touch(:last_run)
     self.save!
   rescue
-  end
-
-  def healthy?
-    total_terms = user.terms.count
-    self.last_run >= Time.zone.now - (16 * total_terms).minutes
   end
 
   def sample_tweets
