@@ -15,6 +15,7 @@ class Term < ActiveRecord::Base
     Starrer.new(self).star
     self.runs += 1
     self.save!
+  rescue
   end
 
   def sample_tweets
