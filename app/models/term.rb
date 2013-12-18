@@ -14,8 +14,14 @@ class Term < ActiveRecord::Base
   def favorite
     Starrer.new(self).star
     self.runs += 1
+    self.touch(:last_run)
     self.save!
   rescue
+  end
+
+  def healthy?
+    total_terms = user.terms.count
+    self.last_run >= Time.zone.now - (16 * total_terms).minutes
   end
 
   def sample_tweets

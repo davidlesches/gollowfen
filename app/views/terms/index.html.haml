@@ -14,7 +14,7 @@
 
   - @terms.each do |term|
     %tr
-      %td= term.term
+      %td{ style: "color: #{ term.healthy? ? 'green' : 'red' }" }= term.term
       %td= term.runs
       %td= term.favorites_count
       %td= term.conversions
