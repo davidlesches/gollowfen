@@ -4,8 +4,8 @@ shared: &shared
 development:
   <<: *shared
   root_url: http://localhost:3000
-  twitter_key: h1qEd231Plsc18vwPycjHQ
-  twitter_secret: 1XXGvpfObPJXciTwy3jgGl3c1Oum4arAi4jHzfIA1JQ
+  twitter_key:
+  twitter_secret:
 
 test:
   <<: *shared
