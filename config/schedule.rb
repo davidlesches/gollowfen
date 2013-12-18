@@ -17,9 +17,18 @@ every 1.day, at: '6:00 pm' do
   runner 'Cronbaby.run_favorites'
 end
 
-every 1.day do
+
+
+every 1.day, at: '8:00 am' do
   runner 'Cronbaby.import_followers'
 end
+
+every 1.day, at: '4:00 pm' do
+  runner 'Cronbaby.import_followers'
+end
+
+
+
 
 every 1.day, at: '3:00 am' do
   runner 'Janitor.clean'
