@@ -6,15 +6,19 @@
   %thead
     %tr
       %th Term
-      %th Favorites
       %th Runs
+      %th Impressions
+      %th Conversions
+      %th Conversion
       %th{width: '30%'} Actions
 
   - @terms.each do |term|
     %tr
       %td= term.term
-      %td= term.favorites_count
       %td= term.runs
+      %td= term.favorites_count
+      %td= term.conversions
+      %td= number_to_percentage(term.conversion_percentage)
       %td
         = link_to 'Preview', preview_term_path(term), class: 'btn btn-info'
         = link_to 'Edit', edit_term_path(term), class: 'btn btn-warning'

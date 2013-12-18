@@ -21,4 +21,8 @@ class Term < ActiveRecord::Base
     user.twitter.search(term, count: 30, result_type: "recent")
   end
 
+  def conversion_percentage
+    conversions.to_f / favorites_count.to_f
+  end
+
 end
