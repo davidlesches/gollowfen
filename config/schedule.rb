@@ -8,3 +8,7 @@ end
 every 1.day do
   runner 'Cronbaby.import_followers'
 end
+
+every 1.day, at: '3:00 am' do
+  runner 'Janitor.clean'
+end

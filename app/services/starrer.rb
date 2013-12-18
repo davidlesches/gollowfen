@@ -31,7 +31,8 @@ class Starrer
           :favorited_at => Time.zone.now,
           :text         => tweet.text,
           :screen_name  => tweet.user.screen_name,
-          :permalink    => "https://twitter.com/#{tweet.user.screen_name}/statuses/#{tweet.id}"
+          :permalink    => "https://twitter.com/#{tweet.user.screen_name}/statuses/#{tweet.id}",
+          :tweet_id     => tweet.id
         )
       end
     rescue Twitter::Error::Forbidden

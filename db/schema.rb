@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217215724) do
+ActiveRecord::Schema.define(version: 20131218154122) do
 
   create_table "favorites", force: true do |t|
     t.integer  "term_id"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20131217215724) do
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "unfavorited",  default: false
+    t.string   "tweet_id"
   end
 
   add_index "favorites", ["term_id"], name: "index_favorites_on_term_id"
