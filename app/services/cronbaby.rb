@@ -2,7 +2,7 @@ class Cronbaby
 
   def self.run_favorites
     User.find_each do |user|
-      user.terms.find_each do { |t| t.favorite }
+      user.terms.find_each { |t| t.favorite }
     end
   end
 
