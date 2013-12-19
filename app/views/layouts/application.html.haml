@@ -8,12 +8,13 @@
 
   %body
     = render 'shared/header'
-    .container
-      .alerts
-        - flash.each do |x,y|
-          %div{class: "alert alert-#{x == :notice ? 'success' : 'error'}"}
-            %a.close{"data-dismiss" => "alert"} &#215;
-            = y
 
-      .main
-        = yield
+    .main
+      .container
+        .alerts
+          - flash.each do |x,y|
+            %div{class: "alert alert-#{x == :notice ? 'success' : 'error'}"}
+              %a.close{"data-dismiss" => "alert"} &#215;
+              = y
+
+      .container= yield

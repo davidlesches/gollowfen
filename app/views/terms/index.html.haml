@@ -12,7 +12,7 @@
       %th Conversion
       %th{width: '30%'} Actions
 
-  - @terms.each do |term|
+  - @terms.order('term asc').each do |term|
     %tr
       %td= term.term
       %td= term.runs

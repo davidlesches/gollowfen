@@ -1,15 +1,17 @@
 .row
-  .span4 &nbsp;
-  .span4
+  .span3 &nbsp;
+  .span6
+    %h1.center Login
+
     .login_form.form-vertical
       = simple_form_for(:session, :url => sessions_path) do |f|
 
         .f-inputs
-          = f.input :email, label: false, placeholder: "Email"
+          = f.input :email, label: false, placeholder: "Email", input_html: { :autocomplete => 'off' }
           = f.input :password, label: false, placeholder: "Password"
 
         .f-login
-          = f.button :submit, value: "Login", class: 'btn btn-success'
+          = f.button :submit, value: "Login", class: 'btn'
 
 
-  .span4 &nbsp;
+  .span3 &nbsp;
