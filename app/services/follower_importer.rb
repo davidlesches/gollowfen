@@ -37,7 +37,7 @@ class FollowerImporter
   def increment_conversion_for follower
     term_ids = user.favorites.where(screen_name: follower.screen_name).pluck(:term_id).uniq
     Term.find(term_ids).each do |term|
-      term.increment(:conversions).save!
+      term.conversions.create! screen_name: follower.screen_name
     end
   end
 

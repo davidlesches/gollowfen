@@ -21,7 +21,7 @@ class Term < ActiveRecord::Base
   end
 
   def conversion_percentage
-    conversions.to_f / favorites_count.to_f
+    conversions_count.to_f / favorites_count.to_f
   end
 
 end

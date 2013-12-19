@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218171412) do
+ActiveRecord::Schema.define(version: 20131219173727) do
+
+  create_table "conversions", force: true do |t|
+    t.integer  "term_id"
+    t.string   "screen_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conversions", ["term_id"], name: "index_conversions_on_term_id"
 
   create_table "favorites", force: true do |t|
     t.integer  "term_id"
@@ -41,10 +50,10 @@ ActiveRecord::Schema.define(version: 20131218171412) do
     t.string   "term"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "favorites_count", default: 0
-    t.integer  "runs",            default: 0
-    t.integer  "conversions",     default: 0
-    t.datetime "last_run",        default: '2013-01-01 00:00:00'
+    t.integer  "favorites_count",   default: 0
+    t.integer  "runs",              default: 0
+    t.integer  "conversions_count", default: 0
+    t.datetime "last_run",          default: '2013-01-01 00:00:00'
   end
 
   add_index "terms", ["user_id"], name: "index_terms_on_user_id"
