@@ -5,7 +5,15 @@ every 1.day, at: '8:30 am' do
   runner 'Cronbaby.run_favorites'
 end
 
+every 1.day, at: '9:30 am' do
+  runner 'Cronbaby.run_favorites'
+end
+
 every 1.day, at: '10:30 am' do
+  runner 'Cronbaby.run_favorites'
+end
+
+every 1.day, at: '11:30 am' do
   runner 'Cronbaby.run_favorites'
 end
 
