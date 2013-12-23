@@ -17,29 +17,35 @@ class HistoryChart
   end
 
   def days
-    ((Time.zone.now - 1.week).to_date..Time.zone.now.to_date).map { |a| a.strftime('%Y-%m-%d') }
+    ((Time.zone.now - 1.week).to_date..Time.zone.now.to_date).map { |a| a.strftime(date_format) }
   end
 
   def favorites
-    @favorites ||= Favorite.where('term_id IN (?)', term_ids).last_week.group('DATE(favorited_at)').count
+    @favorites ||= Favorite.where('term_id IN (?)', term_ids).last_week
+                    .group('DATE(favorited_at)').count
+                    .inject({}) { |sum, (k,v) | sum[k.strftime("%Y-%m-%d")] = v; sum }
   end
 
   def conversions
-    @conversions ||= Conversion.where('term_id IN (?)', term_ids).last_week.group('DATE(created_at)').count
+    @conversions ||= Conversion.where('term_id IN (?)', term_ids).last_week
+                      .group('DATE(created_at)').count
+                      .inject({}) { |sum, (k,v) | sum[k.strftime("%Y-%m-%d")] = v; sum }
   end
 
   def favorites_for day
-    day = day.strftime('%Y-%m-%d')
     favorites[day] ? favorites[day] : 0
   end
 
   def conversions_for day
-    day = day.strftime('%Y-%m-%d')
     conversions[day] ? conversions[day] : 0
   end
 
   def term_ids
     @term_ids ||= user.term_ids
+  end
+
+  def date_format
+    '%Y-%m-%d'
   end
 
 end
