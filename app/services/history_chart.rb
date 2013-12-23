@@ -21,15 +21,11 @@ class HistoryChart
   end
 
   def favorites
-    @favorites ||= Favorite.where('term_id IN (?)', term_ids).last_week
-                    .group('DATE(favorited_at)').count
-                    .inject({}) { |sum, (k,v) | sum[k.strftime("%Y-%m-%d")] = v; sum }
+    @favorites ||= reformat_dates Favorite.where('term_id IN (?)', term_ids).last_week .group('DATE(favorited_at)').count
   end
 
   def conversions
-    @conversions ||= Conversion.where('term_id IN (?)', term_ids).last_week
-                      .group('DATE(created_at)').count
-                      .inject({}) { |sum, (k,v) | sum[k.strftime("%Y-%m-%d")] = v; sum }
+    @conversions ||= reformat_dates Conversion.where('term_id IN (?)', term_ids).last_week.group('DATE(created_at)').count
   end
 
   def favorites_for day
@@ -46,6 +42,14 @@ class HistoryChart
 
   def date_format
     '%Y-%m-%d'
+  end
+
+  def reformat_dates collection
+    if Rails.env.production?
+      collection.inject({}) { |sum, (k,v) | sum[k.strftime("%Y-%m-%d")] = v; sum }
+    else
+      collection
+    end
   end
 
 end
