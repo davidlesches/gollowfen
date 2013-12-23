@@ -56,6 +56,9 @@ GEM
     execjs (2.0.2)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     haml (4.0.4)
       tilt
     haml-rails (0.5.1)
@@ -197,6 +200,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capistrano
   coffee-rails (~> 4.0.0)
+  gon
   haml-rails
   inherited_resources
   jquery-rails

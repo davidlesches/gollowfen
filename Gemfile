@@ -20,3 +20,4 @@ gem 'whenever', :require => false
 gem 'unicorn'
 gem 'capistrano'
 gem 'airbrake'
+gem 'gon'

@@ -27,6 +27,10 @@ every 1.day, at: '4:00 pm' do
   runner 'Cronbaby.import_followers'
 end
 
+every 1.day, at: '11:00 pm' do
+  runner 'Cronbaby.import_followers'
+end
+
 
 
 

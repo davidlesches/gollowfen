@@ -1,5 +1,32 @@
-%h1 Stats Dashboard
+#stats
+  %h1 Stats Dashboard
 
-%p Coming soon.
+  .follower-count
+    .count= current_user.followers.count
+    .byline FOLLOWERS
 
-%p You currently have #{ current_user.followers.count } Twitter followers.
+  .clear.spacer_20
+
+  .canvas-block
+    .title Impressions and Conversions
+    %ul.legend
+      %li{ 'data-color' => 'rgba(220,220,220,1)' }
+        %span
+        Impressions
+      %li{ 'data-color' => 'rgba(151,187,205,1)' }
+        %span
+        Conversions
+    .clear
+    %canvas{ id: 'history_chart', width: 960, height: 300 }
+
+  .canvas-block
+    .title Weekly Term Performance
+    %ul.legend
+      %li{ 'data-color' => 'rgba(220,220,220,1)' }
+        %span
+        Impressions
+      %li{ 'data-color' => 'rgba(151,187,205,1)' }
+        %span
+        Conversions
+    .clear
+    %canvas{ id: 'term_chart', width: 960, height: 300 }
