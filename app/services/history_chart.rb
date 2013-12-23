@@ -29,10 +29,12 @@ class HistoryChart
   end
 
   def favorites_for day
+    day = day.strftime('%Y-%m-%d')
     favorites[day] ? favorites[day] : 0
   end
 
   def conversions_for day
+    day = day.strftime('%Y-%m-%d')
     conversions[day] ? conversions[day] : 0
   end
 
