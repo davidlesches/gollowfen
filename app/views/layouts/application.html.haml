@@ -4,7 +4,7 @@
     %title Gollowfen
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
-    = include_gon
+    = include_gon(:init => true)
     = csrf_meta_tags
 
   %body
