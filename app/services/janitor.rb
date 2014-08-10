@@ -27,7 +27,6 @@ class Janitor
     user = fav.term.user
     thwak user, fav, 1
     thwak user, fav, 2
-    thwak user, fav, 3
     fav.unfavorited = true
     fav.save!
   end
@@ -40,7 +39,7 @@ class Janitor
       # do nothing
       puts e.message
     end
-    sleep 1
+    sleep 5
   end
 
 end
