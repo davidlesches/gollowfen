@@ -28,7 +28,6 @@ class Janitor
     thwak fav, 3
     fav.unfavorited = true
     fav.save!
-    sleep 0.1
   end
 
   def thwak fav, number
@@ -40,6 +39,7 @@ class Janitor
     rescue Exception => e
       # do nothing
     end
+    sleep 1
   end
 
 end
