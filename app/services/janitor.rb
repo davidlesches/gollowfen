@@ -9,7 +9,7 @@ class Janitor
   end
 
   def cleanup
-    favorites_to_unfavorite.each do |fav|
+    favorites_to_unfavorite.find_each do |fav|
       fav.term.user.twitter.unfavorite(fav.tweet_id)
       fav.unfavorited = true
       fav.save!
