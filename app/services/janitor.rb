@@ -24,8 +24,8 @@ class Janitor
   def unfavorite fav
     puts fav.permalink
     begin
-      # fav.term.user.twitter.unfavorite( [fav.tweet_id] )
-      fav.term.user.unfavoriter.send 'post', "/favorites/destroy.json?id=#{fav.tweet_id}"
+      fav.term.user.twitter.unfavorite( [fav.tweet_id] )
+      # fav.term.user.unfavoriter.send 'post', "/favorites/destroy.json?id=#{fav.tweet_id}"
     rescue Exception => e
       puts e.message
       # Page no longer exists.
