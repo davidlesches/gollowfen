@@ -18,7 +18,7 @@ class Janitor
   end
 
   def favorites_to_unfavorite
-    Favorite.where("unfavorited = ? AND favorited_at < ?", false, Time.zone.now - 3.days).order('id desc')
+    Favorite.where("unfavorited = ? AND favorited_at > ?", false, Time.zone.now - 60.days)
   end
 
   def unfavorite fav
