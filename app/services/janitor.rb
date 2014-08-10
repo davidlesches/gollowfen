@@ -38,6 +38,7 @@ class Janitor
       fav.term.user.twitter.post "/1.1/favorites/destroy.json", { id: fav.tweet_id.to_i }
     rescue Exception => e
       # do nothing
+      puts e.message
     end
     sleep 1
   end
