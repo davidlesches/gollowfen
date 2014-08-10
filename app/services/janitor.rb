@@ -22,9 +22,9 @@ class Janitor
   end
 
   def unfavorite fav
-    puts fav.tweet_id
+    puts fav.permalink
     begin
-      fav.term.user.twitter.unfavorite(fav.tweet_id.to_i)
+      fav.term.user.twitter.unfavorite( [fav.tweet_id] )
     rescue Exception => e
       puts e.message
       # Page no longer exists.
