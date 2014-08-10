@@ -10,9 +10,10 @@ class Janitor
 
   def cleanup
     favorites_to_unfavorite.find_each do |fav|
-      fav.term.user.twitter.unfavorite(fav.tweet_id)
-      fav.unfavorited = true
-      fav.save!
+      #fav.term.user.twitter.unfavorite(fav.tweet_id)
+      #fav.unfavorited = true
+      #fav.save!
+      unfavorite fav
     end
   end
 
@@ -23,7 +24,7 @@ class Janitor
   def unfavorite fav
     puts fav.tweet_id
     begin
-      fav.term.user.twitter.destroy_favorite(fav.tweet_id.to_i)
+      fav.term.user.twitter.unfavorite(fav.tweet_id.to_i)
     rescue Exception => e
       puts e.message
       # Page no longer exists.
