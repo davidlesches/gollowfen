@@ -21,9 +21,11 @@ class Janitor
   end
 
   def unfavorite fav
+    puts fav.tweet_id
     begin
       fav.term.user.twitter.destroy_favorite(fav.tweet_id.to_i)
     rescue Exception => e
+      puts e.message
       # Page no longer exists.
     ensure
       fav.unfavorited = true
