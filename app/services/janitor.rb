@@ -18,7 +18,7 @@ class Janitor
   end
 
   def favorites_to_unfavorite
-    Favorite.where("unfavorited = ? AND favorited_at < ?", false, Time.zone.now - 3.days)
+    Favorite.where("unfavorited = ? AND favorited_at < ?", false, Time.zone.now - 3.days).order('id desc')
   end
 
   def unfavorite fav
@@ -28,10 +28,6 @@ class Janitor
     rescue Exception => e
       puts e.message
       # Page no longer exists.
-      begin
-        fav.term.user.twitter.unfavorite( [fav.tweet_id] )
-      rescue
-      end
     ensure
       fav.unfavorited = true
       fav.save!
