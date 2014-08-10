@@ -19,14 +19,13 @@ class Janitor
   end
 
   def favorites_to_unfavorite
-    Favorite.where("unfavorited = ? AND favorited_at > ?", false, Time.zone.now - 60.days)
+    Favorite.where("unfavorited = ? AND favorited_at > ? AND favorited_at < ?", false, Time.zone.now - 3.days, Time.zone.now - 2.days)
   end
 
   def unfavorite fav
     puts fav.permalink
     user = fav.term.user
     thwak user, fav, 1
-    thwak user, fav, 2
     fav.unfavorited = true
     fav.save!
   end
@@ -39,7 +38,7 @@ class Janitor
       # do nothing
       puts e.message
     end
-    sleep 5
+    sleep 1
   end
 
 end
