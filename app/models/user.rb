@@ -29,6 +29,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def unfavoriter
+    @twitter ||= TwitterOAuth::Client.new(
+      :consumer_key => CONFIG[:twitter_key],
+      :consumer_secret => CONFIG[:twitter_secret],
+      :token => oauth_token,
+      :secret => oauth_secret
+    )
+  end
+
   def import_followers
     FollowerImporter.new(self).import
   end
