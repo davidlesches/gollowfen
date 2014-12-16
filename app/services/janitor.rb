@@ -26,14 +26,14 @@ class Janitor
     puts fav.permalink
     user = fav.term.user
     thwak user, fav, 1
-    fav.unfavorited = true
-    fav.save!
   end
 
   def thwak user, fav, number
     begin
       puts "thwak #{number}"
       user.twitter.unfavorite(fav.tweet_id.to_i)
+      fav.unfavorited = true
+      fav.save!
     rescue Exception => e
       # do nothing
       puts e.message
