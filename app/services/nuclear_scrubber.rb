@@ -15,6 +15,7 @@ class NuclearScrubber
     ids.each_slice(500) do |chunk|
       Favorite.where('id IN (?)', chunk).order(ORDER_SCOPE).each do |tweet|
         thwak tweet
+        tweet.update!(unfavorited: true)
       end
     end
   end
@@ -23,8 +24,6 @@ class NuclearScrubber
     begin
       puts "COUNT #{@count += 1} | ID #{fav.id} | #{fav.permalink}"
       user.twitter.unfavorite(fav.tweet_id.to_i)
-      fav.unfavorited = true
-      fav.save!
     rescue Exception => e
       # do nothing
       puts e.message
