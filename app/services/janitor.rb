@@ -4,7 +4,10 @@ class Janitor
     new()
   end
 
-  def initialize
+  attr_reader :type
+
+  def initialize type = :standard
+    @type = type
     cleanup
   end
 
@@ -19,7 +22,13 @@ class Janitor
   end
 
   def favorites_to_unfavorite
-    Favorite.where("unfavorited = ? AND favorited_at > ? AND favorited_at < ?", false, Time.zone.now - 3.days, Time.zone.now - 2.days)
+    @favorites_to_unfavorite ||= if type == :standard
+      Favorite.where("unfavorited = ? AND favorited_at > ? AND favorited_at < ?", false, Time.zone.now - 3.days, Time.zone.now - 2.days)
+    elsif type == :thousand
+      Favorite.where("unfavorited = ?", false).order('id asc').limit(1000)
+    else
+      raise(ArgumentError, 'unknown type')
+    end
   end
 
   def unfavorite fav
@@ -42,6 +51,4 @@ class Janitor
   end
 
 end
-
-# Favorite.where("unfavorited = ? AND favorited_at < ?", false, Time.zone.now - 3.days).find_each { |a| unfavorite a }
 
