@@ -1,5 +1,7 @@
 class NuclearScrubber
 
+  ORDER_SCOPE = "favorites.id desc"
+
   attr_reader :user
 
   def initialize user
@@ -9,15 +11,17 @@ class NuclearScrubber
   end
 
   def scrub
-    user.favorites.where('unfavorited = ?', false).order('id desc').find_each do |tweet|
-      puts(@count += 1)
-      thwak tweet
+    ids = user.favorites.where('unfavorited = ?', false).order(ORDER_SCOPE).pluck(:id)
+    ids.each_slice(500) do |chunk|
+      Favorite.find(chunk).order(ORDER_SCOPE).each do |tweet|
+        thwak tweet
+      end
     end
   end
 
   def thwak fav
     begin
-      puts fav.permalink
+      puts "COUNT #{@count += 1} | ID #{fav.id} | #{fav.permalink}"
       user.twitter.unfavorite(fav.tweet_id.to_i)
       fav.unfavorited = true
       fav.save!
@@ -25,7 +29,7 @@ class NuclearScrubber
       # do nothing
       puts e.message
     end
-    sleep 1
+    sleep 0.5
   end
 
 end
