@@ -17,7 +17,7 @@ class NuclearScrubber
   end
 
   def favorites_to_unfavorite
-    user.favorites.where('unfavorited = ?', false).select('id, tweet_id').order('favorites.id asc').limit(100)
+    user.favorites.where('unfavorited = ?', false).select('favorites.id, tweet_id').order('favorites.id asc').limit(100)
   end
 
 end
