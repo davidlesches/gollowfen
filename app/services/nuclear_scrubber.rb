@@ -4,20 +4,28 @@ class NuclearScrubber
 
   def initialize user
     @user = user
+    @count = 0
     scrub
   end
 
   def scrub
-    favs = favorites_to_unfavorite
-    tweet_ids = favs.map { |a| a.tweet_id.to_i }
-    favorite_ids = favs.map { |a| a.id.to_i }
-
-    user.unfavorite(tweet_ids)
-    Favorite.find(favorite_ids).update_all(unfavorited: true)
+    user.favorites.where('unfavorited = ?', false).order('id desc').find_each do |tweet|
+      puts(@count += 1)
+      thwak tweet
+    end
   end
 
-  def favorites_to_unfavorite
-    user.favorites.where('unfavorited = ?', false).select('favorites.id, tweet_id').order('favorites.id asc').limit(100)
+  def thwak fav
+    begin
+      puts fav.permalink
+      user.twitter.unfavorite(fav.tweet_id.to_i)
+      fav.unfavorited = true
+      fav.save!
+    rescue Exception => e
+      # do nothing
+      puts e.message
+    end
+    sleep 1
   end
 
 end
