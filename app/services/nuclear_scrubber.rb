@@ -13,7 +13,7 @@ class NuclearScrubber
   def scrub
     ids = user.favorites.where('unfavorited = ?', false).order(ORDER_SCOPE).pluck(:id)
     ids.each_slice(500) do |chunk|
-      Favorite.where('ids IN (?)', chunk).order(ORDER_SCOPE).each do |tweet|
+      Favorite.where('id IN (?)', chunk).order(ORDER_SCOPE).each do |tweet|
         thwak tweet
       end
     end
