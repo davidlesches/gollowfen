@@ -2,8 +2,8 @@ class Term < ActiveRecord::Base
 
   # Associations
   belongs_to :user
-  has_many :favorites, dependent: :destroy
-  has_many :conversions, dependent: :destroy
+  has_many :favorites, dependent: :nullify
+  has_many :conversions, dependent: :nullify
 
   # Validations
   validates :term, presence: true
